@@ -36,13 +36,8 @@ jobs:
 
             - name: Check for Tag Mismatch
               run: |
-                  echo "${GITHUB_REF//refs\/tags\//}" >> ref
+                  ref = "${GITHUB_REF//refs\/tags\//}"
                   echo $ref
-                  
-                  echo "1 - ${GITHUB_REF//refs\/tags\//}"
-                  echo "2 - ${$GITHUB_REF//refs\/tags\//}"
-                  echo ${GITHUB_REF//refs\/tags\//}
-                  echo $GITHUB_REF//refs\/tags\//
                   
                   if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
                   then
