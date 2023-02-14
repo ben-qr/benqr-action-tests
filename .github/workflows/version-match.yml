@@ -36,6 +36,11 @@ jobs:
 
             - name: Check for Tag Mismatch
               run: |
+                  echo ${{ steps.define_setup.outputs.SETUP_FILE }}
+                  echo "abc - ${{ steps.define_setup.outputs.SETUP_FILE }}"
+                  echo ${{ env.GITHUB_REF }}
+                  echo ${{ GITHUB_REF }}
+                  echo $GITHUB_REF
                   if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
                   then
                     echo "Setup version is correct!"
