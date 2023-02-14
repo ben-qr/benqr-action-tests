@@ -38,7 +38,11 @@ jobs:
               run: |
                   echo ${{ steps.define_setup.outputs.SETUP_FILE }}
                   echo "abc - ${{ steps.define_setup.outputs.SETUP_FILE }}"
+                  echo "def - ${GITHUB_REF}"
                   echo "def - $GITHUB_REF"
+                  echo "${GITHUB_REF//refs\/tags\//}"
+                  echo "${$GITHUB_REF//refs\/tags\//}"
+                  echo $GITHUB_REF//refs\/tags\//
                   echo "---"
                   if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
                   then
