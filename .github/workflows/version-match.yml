@@ -38,7 +38,8 @@ jobs:
               run: |
                   echo ${{ steps.define_setup.outputs.SETUP_FILE }}
                   echo "abc - ${{ steps.define_setup.outputs.SETUP_FILE }}"
-                  echo ${{ env }}
+                  echo "def - $GITHUB_REF"
+                  echo "---"
                   if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
                   then
                     echo "Setup version is correct!"
