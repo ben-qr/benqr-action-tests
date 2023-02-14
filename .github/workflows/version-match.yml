@@ -36,13 +36,13 @@ jobs:
 
             - name: Check for Tag Mismatch
               run: |
-                  ref = "${GITHUB_REF//refs\/tags\//}"
-                  echo $ref
+                  REF"${GITHUB_REF//refs\/tags\//}"
+                  echo $REF
                   
                   if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
                   then
                     echo "Setup version is correct!"
                   else
-                    echo "Looks like there's a mismatch, have you updated the vesion in ${{ steps.define_setup.outputs.SETUP_FILE }} to $ref?"
+                    echo "Looks like there's a mismatch, have you updated the vesion in ${{ steps.define_setup.outputs.SETUP_FILE }} to $REF?"
                     exit 1
                   fi
