@@ -44,6 +44,6 @@ jobs:
                   then
                     echo "Setup version is correct!"
                   else
-                    echo "Looks like there's a mismatch, have you updated the vesion in ${{ steps.define_setup.outputs.SETUP_FILE }} to ${{ env.GITHUB_REF }}?"
+                    echo "Looks like there's a mismatch, have you updated the vesion in ${{ steps.define_setup.outputs.SETUP_FILE }} to ${GITHUB_REFF##*/}?"
                     exit 1
                   fi
