@@ -21,7 +21,7 @@ jobs:
             - name: Define Setup File
               id: define_setup
               run: |
-                if steps.check_files.outputs.files_exists == 'true'
+                if ${{ steps.check_files.outputs.files_exists }} == 'true'
                 then
                   echo "SETUP_FILE=setup.py" >> $GITHUB_OUTPUT
                 else
