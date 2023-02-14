@@ -16,16 +16,16 @@ jobs:
               id: check_files
               uses: andstor/file-existence-action@v2
               with:
-                files: "setup.py"
+                files: "setup.cfg"
 
             - name: Define Setup File
               id: define_setup
               run: |
-                if ${{ steps.check_files.outputs.files_exists }} == 'true'
+                if '${{ steps.check_files.outputs.files_exists }}' == 'true'
                 then
-                  echo "SETUP_FILE=setup.py" >> $GITHUB_OUTPUT
-                else
                   echo "SETUP_FILE=setup.cfg" >> $GITHUB_OUTPUT
+                else
+                  echo "SETUP_FILE=setup.py" >> $GITHUB_OUTPUT
                 fi
 
             - name: Read Setup File
@@ -36,7 +36,7 @@ jobs:
 
             - name: Check for Tag Mismatch
               run: |
-                  if [[ "${{ steps.read_setup.outputs.content }}" =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
+                  if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ env.GITHUB_REF }}\"?" ]]
                   then
                     echo "Setup version is correct!"
                   else
