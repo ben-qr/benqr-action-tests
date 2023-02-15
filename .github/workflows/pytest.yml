@@ -3,24 +3,24 @@ name: PyTest
 on: [pull_request]
 
 jobs:
-    check-paths:
-        runs-on: ubuntu-latest
-        outputs:
-          should-test: ${{ steps.filter.outputs.doTest }}
-        steps:
-          - uses: dorny/paths-filter@v2
-            id: filter
-            with:
-              filters: |
-                doTest:
-                  - '**.py'
-                  - '**.html'
-                  - 'requirements/**'
-                  - '**/tests/**'
+#    check-paths:
+#        runs-on: ubuntu-latest
+#        outputs:
+#          should-test: ${{ steps.filter.outputs.doTest }}
+#        steps:
+#          - uses: dorny/paths-filter@v2
+#            id: filter
+#            with:
+#              filters: |
+#                doTest:
+#                  - '**.py'
+#                  - '**.html'
+#                  - 'requirements/**'
+#                  - '**/tests/**'
 
     test:
         needs: check-paths
-        if: needs.check-paths.outputs.should-test == 'true'
+#        if: needs.check-paths.outputs.should-test == 'true'
         runs-on: ubuntu-latest
         timeout-minutes: 10
 
