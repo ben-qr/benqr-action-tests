@@ -34,10 +34,6 @@ jobs:
               with:
                   python-version: "3.10"
 
-            - name: Set Env Vars
-              run: |
-                  echo "DJANGO_SETTINGS_MODULE=eris.settings.ci" >> $GITHUB_ENV
-                  echo "DEBUG=1" >> $GITHUB_ENV
             - name: Cache Dependencies
               id: cache-pip
               uses: actions/cache@v3.0.4
