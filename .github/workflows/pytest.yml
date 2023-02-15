@@ -43,7 +43,7 @@ jobs:
               uses: actions/cache@v3.0.4
               with:
                   path: venv
-                  key: pip-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('requirements/base.txt', 'requirements/test.txt') }}
+                  key: pip-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('./requirements/base.txt', './requirements/test.txt') }}
                   restore-keys: pip-${{ steps.setup-python.outputs.python-version }}-
 
             - name: Install Dependencies
