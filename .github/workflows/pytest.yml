@@ -19,7 +19,7 @@ jobs:
 #                  - '**/tests/**'
 
     test:
-        needs: check-paths
+#        needs: check-paths
 #        if: needs.check-paths.outputs.should-test == 'true'
         runs-on: ubuntu-latest
         timeout-minutes: 10
