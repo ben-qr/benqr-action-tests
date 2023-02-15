@@ -82,7 +82,6 @@ template: |
     VERSION_OK_TMP
     $CHANGES
 
-
 on:
   push:
     branches:
