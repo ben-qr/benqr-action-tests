@@ -3,24 +3,24 @@ name: PyTest
 on: [pull_request]
 
 jobs:
-#    check-paths:
-#        runs-on: ubuntu-latest
-#        outputs:
-#          should-test: ${{ steps.filter.outputs.doTest }}
-#        steps:
-#          - uses: dorny/paths-filter@v2
-#            id: filter
-#            with:
-#              filters: |
-#                doTest:
-#                  - '**.py'
-#                  - '**.html'
-#                  - 'requirements/**'
-#                  - '**/tests/**'
+    check-paths:
+        runs-on: ubuntu-latest
+        outputs:
+          should-test: ${{ steps.filter.outputs.doTest }}
+        steps:
+          - uses: dorny/paths-filter@v2
+            id: filter
+            with:
+              filters: |
+                doTest:
+                  - '**.py'
+                  - '**.html'
+                  - '**/requirements/**'
+                  - '**/tests/**'
 
     test:
-#        needs: check-paths
-#        if: needs.check-paths.outputs.should-test == 'true'
+        needs: check-paths
+        if: needs.check-paths.outputs.should-test == 'true'
         runs-on: ubuntu-latest
         timeout-minutes: 10
 
@@ -39,7 +39,7 @@ jobs:
               uses: actions/cache@v3.0.4
               with:
                   path: venv
-                  key: pip-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('requirements/base.txt', 'requirements/test.txt') }}
+                  key: pip-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('example/requirements.txt', 'requirements/test.txt') }}
                   restore-keys: pip-${{ steps.setup-python.outputs.python-version }}-
 
             - name: Install Dependencies
@@ -50,7 +50,7 @@ jobs:
                   . venv/bin/activate
                   python -m pip install --upgrade pip
                   pip install -r ../requirements/test.txt
-                  pip install -r ../requirements/base.txt
+                  pip install -r ./requirements.txt
 
             - name: Run Tests
               working-directory: ./example
