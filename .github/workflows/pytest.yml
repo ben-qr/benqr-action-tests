@@ -47,6 +47,7 @@ jobs:
                   restore-keys: pip-${{ steps.setup-python.outputs.python-version }}-
 
             - name: Install Dependencies
+              working-directory: ./example
               if: steps.cache-pip.outputs.cache-hit != 'true'
               run: |
                   python -m venv venv
