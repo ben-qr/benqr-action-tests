@@ -42,6 +42,8 @@ replacers:
     replace: "$2: "
   - search: /(build|ci|chore|docs|feat|fix|perf|refactor|style|test):\s?/g
     replace: ""
+  - search: VERSION_OK_TMP
+    replace: "YES"
 autolabeler:
   - label: minor
     title:
@@ -79,9 +81,6 @@ autolabeler:
 template: |
     VERSION_OK_TMP
     $CHANGES
-replacers:
-  - search: VERSION_OK_TMP
-    replace: "YES"
 
 
 on:
