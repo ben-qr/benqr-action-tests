@@ -85,7 +85,7 @@ template: |
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   update_release_draft:
