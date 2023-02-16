@@ -51,10 +51,7 @@ jobs:
       # Warning: will clobber manual changes while in draft
       - uses: release-drafter/release-drafter@v5
         with:
-          disable-autolabeler: true
           header: "${steps.check_mismatch.outputs.VERSION_MATCH_MSG}"
 
         env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_ACCESS_TOKEN }}
-
-#
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
