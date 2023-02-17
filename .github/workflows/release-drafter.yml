@@ -47,9 +47,9 @@ jobs:
       - name: Check for Tag Mismatch
         id: check_mismatch
         run: |
-            REF=${{ steps.previoustag.outputs.tag }}
+            REF=${{ steps.previous_tag.outputs.tag }}
             echo $REF
-            if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ steps.previoustag.outputs.tag }}\"?" ]]
+            if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ steps.previous_tag.outputs.tag }}\"?" ]]
             then
             echo "VERSION_MATCH_MSG=''" >> $GITHUB_OUTPUT
             else
