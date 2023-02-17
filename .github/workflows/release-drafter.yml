@@ -53,12 +53,9 @@ jobs:
             then
             echo "VERSION_MATCH_MSG=''" >> $GITHUB_OUTPUT
             else
-              echo "VERSION_MATCH_MSG='Note: Update Version in ${{ steps.define_setup.outputs.SETUP_FILE }} to $REF? before publishing release'" >> $GITHUB_OUTPUT
+              echo "VERSION_MATCH_MSG=Note: The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated from $REF before publishing release" >> $GITHUB_OUTPUT
             fi
 
-# todo check that setup is the CURRENT version. then say message "setup file still needs to be updated"
-
-      - run: echo ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
       # Drafts your next Release notes as Pull Requests are merged into "master"
       # Warning: will clobber manual changes while in draft
       - uses: release-drafter/release-drafter@v5
