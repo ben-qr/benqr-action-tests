@@ -57,7 +57,7 @@ jobs:
             fi
 
       - name: Re-draft
-        if: '${{steps.check_mismatch.outputs.VERSION_MATCH_MSG}}' != ''
+        if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != ''
         uses: release-drafter/release-drafter@v5
         with:
           header: ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
