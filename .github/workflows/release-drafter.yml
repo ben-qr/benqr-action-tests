@@ -53,13 +53,10 @@ jobs:
         id: check_mismatch
         run: |
             UNCLEANED_DRAFTNAME="${{ steps.drafts.outputs.name }}"
-            echo UNCLEANED_DRAFTNAME
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
-            echo ${UNCLEANED_DRAFTNAME//\./"\."}
-            echo ${UNCLEANED_DRAFTNAME//./"\."}
-            echo ${UNCLEANED_DRAFTNAME//"."/"\."}
-            echo DRAFTNAME
-            if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${DRAFTNAME}\"?" ]]  # .'s in name will be catchalls
+            echo "version\s*=\s*\"?${DRAFTNAME}\"?"
+            [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${DRAFTNAME}\"?" ]] && echo matched
+            if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${DRAFTNAME}\"?" ]]
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
             else
