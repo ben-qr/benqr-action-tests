@@ -55,10 +55,14 @@ jobs:
             echo "version\s*=\s*\"?${{ steps.drafts.outputs.name }}\"?"
             if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ steps.drafts.outputs.name }}\"?" ]]
             then
-              echo "VERSION_MATCH_MSG=Note: The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated from $REF before publishing release" >> $GITHUB_OUTPUT
-            else
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
+            else
+              echo "VERSION_MATCH_MSG=Note: The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated from $REF before publishing release" >> $GITHUB_OUTPUT
             fi
+
+      - name: abc
+        run: |
+          echo ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
 
       - uses: release-drafter/release-drafter@v5
         with:
