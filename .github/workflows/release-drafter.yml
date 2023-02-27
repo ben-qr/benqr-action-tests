@@ -52,9 +52,9 @@ jobs:
       - name: Check for Tag Mismatch
         id: check_mismatch
         run: |
-            echo '${{ steps.read_setup.outputs.content }}'
-            echo "version\s*=\s*\"?${{ steps.drafts.outputs.name }}\"?"
-            if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ steps.drafts.outputs.name }}\"?" ]]
+            DRAFTNAME=${steps.drafts.outputs.name/./"\."}
+            echo DRAFTNAME
+            if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${DRAFTNAME}\"?" ]]  # .'s in name will be catchalls
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
             else
