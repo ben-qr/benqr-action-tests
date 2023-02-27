@@ -51,8 +51,6 @@ jobs:
         run: |
             UNCLEANED_DRAFTNAME="${{ steps.drafts.outputs.name }}"
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
-            echo 0
-            [[ '${{ steps.read_setup.outputs.content }}' =~ *version \= 0\.0\.1* ]] && echo matched
             QUERY="version\s*\=\s*\"?${DRAFTNAME}\"?"
             if [[ '${{ steps.read_setup.outputs.content }}' =~ $QUERY ]]
             then
