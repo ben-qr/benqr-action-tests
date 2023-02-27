@@ -51,12 +51,21 @@ jobs:
         run: |
             UNCLEANED_DRAFTNAME="${{ steps.drafts.outputs.name }}"
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
+            echo 0
+            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*\"?${DRAFTNAME}\"? ]] && echo matched
+            echo 1
             [[ '${{ steps.read_setup.outputs.content }}' =~ ${DRAFTNAME} ]] && echo matched
+            echo 2
             [[ '${{ steps.read_setup.outputs.content }}' =~ \"?${DRAFTNAME}\"? ]] && echo matched
-            [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]] && echo matched
-            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*${DRAFTNAME} ]] && echo matched
+            echo 5
             [[ '${{ steps.read_setup.outputs.content }}' =~ [ ]*${DRAFTNAME} ]] && echo matched
+            echo 3
+            [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]] && echo matched
+            echo 4
+            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*${DRAFTNAME} ]] && echo matched
+            echo 6
             [[ '${{ steps.read_setup.outputs.content }}' =~ version = ${DRAFTNAME} ]] && echo matched
+            echo 7
             [[ '${{ steps.read_setup.outputs.content }}' =~ version = \"?${DRAFTNAME}\"? ]] && echo matched
             if [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]]
             then
