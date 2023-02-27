@@ -57,7 +57,7 @@ jobs:
             fi
 
       - uses: release-drafter/release-drafter@v5
-        if: -z ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
+        if: -n ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
         with:
           header: ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
         env:
