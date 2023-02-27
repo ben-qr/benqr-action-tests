@@ -53,7 +53,8 @@ jobs:
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
             echo 0
             [[ '${{ steps.read_setup.outputs.content }}' =~ *version \= 0\.0\.1* ]] && echo matched
-            if [[ '${{ steps.read_setup.outputs.content }}' =~ *version\s*\=\s*\"?${DRAFTNAME}\"?* ]]
+            QUERY="version\s*\=\s*\"?${DRAFTNAME}\"?"
+            if [[ '${{ steps.read_setup.outputs.content }}' =~ $QUERY ]]
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
             else
