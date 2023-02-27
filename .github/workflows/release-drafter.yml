@@ -54,19 +54,13 @@ jobs:
             echo 0
             [[ '${{ steps.read_setup.outputs.content }}' =~ \s*\"?${DRAFTNAME}\"? ]] && echo matched
             echo 1
-            [[ '${{ steps.read_setup.outputs.content }}' =~ ${DRAFTNAME} ]] && echo matched
+            [[ '${{ steps.read_setup.outputs.content }}' =~ =\s*\"?${DRAFTNAME}\"? ]] && echo matched
             echo 2
-            [[ '${{ steps.read_setup.outputs.content }}' =~ \"?${DRAFTNAME}\"? ]] && echo matched
-            echo 5
-            [[ '${{ steps.read_setup.outputs.content }}' =~ [ ]*${DRAFTNAME} ]] && echo matched
-            echo 3
+            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*=\s*\"?${DRAFTNAME}\"? ]] && echo matched
+            echo 21
+            [[ '${{ steps.read_setup.outputs.content }}' =~ n\s*=\s*\"?${DRAFTNAME}\"? ]] && echo matched
+            echo 21
             [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]] && echo matched
-            echo 4
-            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*${DRAFTNAME} ]] && echo matched
-            echo 6
-            [[ '${{ steps.read_setup.outputs.content }}' =~ version = ${DRAFTNAME} ]] && echo matched
-            echo 7
-            [[ '${{ steps.read_setup.outputs.content }}' =~ version = \"?${DRAFTNAME}\"? ]] && echo matched
             if [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]]
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
