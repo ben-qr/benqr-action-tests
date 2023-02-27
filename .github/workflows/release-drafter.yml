@@ -17,15 +17,12 @@ jobs:
         uses: actions/checkout@v3
 
       - uses: release-drafter/release-drafter@v5
-        id: drafts
+        id: first_draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check for setup.py
-        id: check_files
+      - name: Look for setup.cfg
+        id: check_setup_cfg
         uses: andstor/file-existence-action@v2
         with:
           files: "setup.cfg"
@@ -33,7 +30,7 @@ jobs:
       - name: Define Setup File
         id: define_setup
         run: |
-          if '${{ steps.check_files.outputs.files_exists }}' == 'true'
+          if '${{ steps.check_setup_cfg.outputs.files_exists }}' == 'true'
           then
             echo "SETUP_FILE=setup.cfg" >> $GITHUB_OUTPUT
           else
@@ -49,14 +46,14 @@ jobs:
       - name: Check for Tag Mismatch
         id: check_mismatch
         run: |
-            UNCLEANED_DRAFTNAME="${{ steps.drafts.outputs.name }}"
+            UNCLEANED_DRAFTNAME="${{ steps.first_draft.outputs.name }}"
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
             QUERY="version\s*\=\s*\"?${DRAFTNAME}\"?"
             if [[ '${{ steps.read_setup.outputs.content }}' =~ $QUERY ]]
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
             else
-              echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.drafts.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
+              echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.first_draft.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
             fi
 
       - uses: release-drafter/release-drafter@v5
