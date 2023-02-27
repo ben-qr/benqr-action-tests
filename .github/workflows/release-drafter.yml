@@ -56,6 +56,8 @@ jobs:
               echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.first_draft.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
             fi
 
+            [[-n ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}]] && echo notempty
+
       - uses: release-drafter/release-drafter@v5
         if: -n ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
         with:
