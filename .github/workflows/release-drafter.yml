@@ -57,16 +57,24 @@ jobs:
             fi
 
       - name: blah1
-        if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != ''
+        if: '${steps.check_mismatch.outputs.VERSION_MATCH_MSG}' != ''
         run: echo "INDEED"
 
-      - name: blah1
+      - name: blah10
+        if: 'steps.check_mismatch.outputs.VERSION_MATCH_MSG' != ''
+        run: echo "INDEED"
+
+      - name: blah20
+        if: '${{steps.check_mismatch.outputs.VERSION_MATCH_MSG}}' != ''
+        run: echo "INDEED"
+
+      - name: blah2
         run: |
           echo ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
           echo ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }} != '' && notempty
 
       - name: Re-draft
-        if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != ''
+        if: '${steps.check_mismatch.outputs.VERSION_MATCH_MSG}' != ''
         uses: release-drafter/release-drafter@v5
         with:
           header: ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
