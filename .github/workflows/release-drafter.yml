@@ -54,7 +54,8 @@ jobs:
             [[ '${{ steps.read_setup.outputs.content }}' =~ ${DRAFTNAME} ]] && echo matched
             [[ '${{ steps.read_setup.outputs.content }}' =~ \"?${DRAFTNAME}\"? ]] && echo matched
             [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]] && echo matched
-            [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*${DRAFTNAME} ]] && echo matched
+            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*${DRAFTNAME} ]] && echo matched
+            [[ '${{ steps.read_setup.outputs.content }}' =~ [ ]*${DRAFTNAME} ]] && echo matched
             [[ '${{ steps.read_setup.outputs.content }}' =~ version = ${DRAFTNAME} ]] && echo matched
             [[ '${{ steps.read_setup.outputs.content }}' =~ version = \"?${DRAFTNAME}\"? ]] && echo matched
             if [[ '${{ steps.read_setup.outputs.content }}' =~ version\s*=\s*\"?${DRAFTNAME}\"? ]]
