@@ -49,9 +49,7 @@ jobs:
             UNCLEANED_DRAFTNAME="${{ steps.first_draft.outputs.name }}"
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
             QUERY="version\s*\=\s*\"?${DRAFTNAME}\"?"
-            if [[ '${{ steps.read_setup.outputs.content }}' =~ $QUERY ]]
-            then
-              :
+            if ! [[ '${{ steps.read_setup.outputs.content }}' =~ $QUERY ]]
             else
               echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.first_draft.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
             fi
