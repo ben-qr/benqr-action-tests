@@ -57,7 +57,7 @@ jobs:
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
             else
-              echo "VERSION_MATCH_MSG=**Note: The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated from ${{ steps.drafts.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
+              echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated from ${{ steps.drafts.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
             fi
 
       - uses: release-drafter/release-drafter@v5

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="benqr-action-tests",
-    version="0.0.0",
+    version="0.0.1",
     author="Ben Gregory",
     author_email="ben.gregory@quickreleaseinc.com",
     maintainer="Ben Gregory",
