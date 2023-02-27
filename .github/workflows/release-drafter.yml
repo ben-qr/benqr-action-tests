@@ -60,12 +60,8 @@ jobs:
         run: echo "indeed"
       
       - name:
-        if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != ''
+        if: steps.check_mismatch.outputs.VERSION_MATCH_MSG == ''
         run: echo "indeed"
-
-      - name:
-        if: ${#steps.check_mismatch.outputs.VERSION_MATCH_MSG} != 0
-        run: echo ${#steps.check_mismatch.outputs.VERSION_MATCH_MSG}
 
       - name: Re-draft
         if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != ''
