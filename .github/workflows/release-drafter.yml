@@ -52,7 +52,8 @@ jobs:
       - name: Check for Tag Mismatch
         id: check_mismatch
         run: |
-            DRAFTNAME=${steps.drafts.outputs.name/./"\."}
+            UNCLEANED_DRAFTNAME=${{ steps.drafts.outputs.name }}
+            DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
             echo DRAFTNAME
             if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${DRAFTNAME}\"?" ]]  # .'s in name will be catchalls
             then
