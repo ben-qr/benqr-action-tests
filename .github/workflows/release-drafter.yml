@@ -52,15 +52,13 @@ jobs:
       - name: Check for Tag Mismatch
         id: check_mismatch
         run: |
-            echo ${{ steps.read_setup.outputs.content }}
+            echo '${{ steps.read_setup.outputs.content }}'
             echo "version\s*=\s*\"?${{ steps.drafts.outputs.name }}\"?"
             if [[ '${{ steps.read_setup.outputs.content }}' =~ "version\s*=\s*\"?${{ steps.drafts.outputs.name }}\"?" ]]
             then
               echo "VERSION_MATCH_MSG=" >> $GITHUB_OUTPUT
-              echo "YES"
             else
               echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.drafts.outputs.name }} before publishing new release**" >> $GITHUB_OUTPUT
-              echo "NO"
             fi
 
       - uses: release-drafter/release-drafter@v5
