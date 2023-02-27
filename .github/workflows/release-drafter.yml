@@ -61,7 +61,6 @@ jobs:
             fi
 
       - uses: release-drafter/release-drafter@v5
-        id: drafts
         with:
           header: ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
         env:
