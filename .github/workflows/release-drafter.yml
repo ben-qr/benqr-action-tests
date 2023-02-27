@@ -59,6 +59,12 @@ jobs:
       - if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != ''
         run: echo "indeed"
       
+      - if: steps.check_mismatch.outputs.VERSION_MATCH_MSG != 
+        run: echo "indeed"
+      
+      - if: 'steps.check_mismatch.outputs.VERSION_MATCH_MSG' != ''
+        run: echo "indeed"
+      
       - name:
         if: steps.check_mismatch.outputs.VERSION_MATCH_MSG == ''
         run: echo "indeed"
