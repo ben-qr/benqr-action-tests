@@ -7,9 +7,6 @@ on:
 
 jobs:
   update_release_draft:
-    permissions:
-      contents: write
-      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -17,13 +14,6 @@ jobs:
       # Warning: will clobber manual changes while in draft
       - name: Check out Repository
         uses: actions/checkout@v3
-
-      - uses: release-drafter/release-drafter@v5
-        id: first_draft
-        with:
-          disable-autolabeler: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Look for setup.cfg
         id: check_setup_cfg
