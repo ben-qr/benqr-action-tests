@@ -52,11 +52,13 @@ jobs:
             UNCLEANED_DRAFTNAME="${{ steps.drafts.outputs.name }}"
             DRAFTNAME=${UNCLEANED_DRAFTNAME//\./"\."}
             echo 0
+            [[ '${{ steps.read_setup.outputs.content }}' =~ version \= 0\.0\.1 ]] && echo matched
+            echo 0
             [[ '${{ steps.read_setup.outputs.content }}' =~ \s*\"?${DRAFTNAME}\"? ]] && echo matched
             echo 1
-            [[ '${{ steps.read_setup.outputs.content }}' =~ \=\s*\"?${DRAFTNAME}\"? ]] && echo matched
+            [[ '${{ steps.read_setup.outputs.content }}' =~  \= \"?${DRAFTNAME}\"? ]] && echo matched
             echo 2
-            [[ '${{ steps.read_setup.outputs.content }}' =~ \s*\=\s*\"?${DRAFTNAME}\"? ]] && echo matched
+            [[ '${{ steps.read_setup.outputs.content }}' =~ [\s]*\=[\s]*\"?${DRAFTNAME}\"? ]] && echo matched
             echo 21
             [[ '${{ steps.read_setup.outputs.content }}' =~ n\s*\=\s*\"?${DRAFTNAME}\"? ]] && echo matched
             echo 21
