@@ -56,7 +56,8 @@ jobs:
           QUERY="version\s*\=\s*\"?${DRAFTNAME}\"?"
           if ! [[ '${{ steps.read_setup.outputs.content }}' =~ $QUERY ]]
           then
-            echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.first_draft.outputs.name }} before publishing this release**" >> $GITHUB_OUTPUT
+            echo "VERSION_MATCH_MSG=:rotating_light: **The version in setup file ${{ steps.define_setup.outputs.SETUP_FILE }} still needs to be updated to ${{ steps.first_draft.outputs.name }} before publishing this release**
+          " >> $GITHUB_OUTPUT
           fi
 
       - name: Re-draft
@@ -64,7 +65,11 @@ jobs:
         uses: release-drafter/release-drafter@v5
         with:
           header: ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
-          
+
+
+
+
+
           disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
