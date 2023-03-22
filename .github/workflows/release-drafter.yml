@@ -52,7 +52,10 @@ jobs:
         if: steps.check_mismatch.outputs.VERSION_MATCH_MSG
         uses: release-drafter/release-drafter@v5
         with:
-          header: ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }}
+          header: |
+          a |
+          ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }} |
+          b
           disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
