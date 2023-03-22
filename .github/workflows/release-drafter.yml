@@ -7,6 +7,9 @@ on:
 
 jobs:
   update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -20,7 +23,8 @@ jobs:
         with:
           disable-autolabeler: true
         env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Look for setup.cfg
         id: check_setup_cfg
