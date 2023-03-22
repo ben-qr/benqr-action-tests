@@ -53,9 +53,9 @@ jobs:
         uses: release-drafter/release-drafter@v5
         with:
           header: |
-          a |
-          ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }} |
-          b
+            a |
+            ${{ steps.check_mismatch.outputs.VERSION_MATCH_MSG }} |
+            b
           disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
