@@ -74,6 +74,4 @@
             - label: docs
               title:
                 - /^docs/
-          template: |
-
-              $CHANGES
+          template: $CHANGES
