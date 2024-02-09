@@ -30,7 +30,7 @@ jobs:
       - name: Check if feat commit
         id: check_feat
         run: |
-          if [[ ${{ github.event.pull_request.title }} =~ "feat" ]]; then
+          if [[ "${{ github.event.pull_request.title }}" =~ "feat" ]]; then
             echo "is_feat=true" >> $GITHUB_ENV
           fi
 
