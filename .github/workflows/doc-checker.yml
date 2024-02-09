@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update_release_draft:
+  check_for_docs:
     permissions:
       contents: write
       pull-requests: write
