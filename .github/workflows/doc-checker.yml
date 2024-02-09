@@ -25,9 +25,9 @@ jobs:
         id: check_markdown
         if: startsWith( "${{ github.event.pull_request.title }}", "feat:" )
         run: |
-          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '\.md$'
-          if [[ $(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '\.md$') ]]; then
+          echo "${{ steps.abc.outputs.added_modified }}"
+          echo ${{ steps.abc.outputs.added_modified }} | grep -E '\.md$'
+          if [[ ${{ steps.abc.outputs.added_modified }} | grep -E '\.md$') ]]; then
             echo "docs_missing=true" >> $GITHUB_ENV
           fi
 
