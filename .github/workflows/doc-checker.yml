@@ -21,17 +21,12 @@ jobs:
 #        with:
 #           fetch-depth: 2
 
-      - uses: release-drafter/release-drafter@v5
-        id: first_draft
-        with:
-          disable-autolabeler: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Look for markdown files
         id: check_markdown
         if: startsWith( "${{ github.event.pull_request.title }}", "feat:" )
         run: |
+          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+          echo git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '\.md$'
           if [[ $(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '\.md$') ]]; then
             echo "docs_missing=true" >> $GITHUB_ENV
           fi
