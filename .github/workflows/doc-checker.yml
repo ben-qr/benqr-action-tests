@@ -18,8 +18,8 @@ jobs:
       # Warning: will clobber manual changes while in draft
       - name: Check out Repository
         uses: actions/checkout@v3
-        with:
-           fetch-depth: 2
+#        with:
+#           fetch-depth: 2
 
       - uses: release-drafter/release-drafter@v5
         id: first_draft
@@ -45,7 +45,7 @@ jobs:
 #            git diff --name-only -r HEAD^1 HEAD
 
       - name: Add label if no documentation
-        if: steps.check_markdown.outputs.docs_exist != 'true'
+        if: steps.check_markdown.outputs.docs_exist != 'true' && steps.check_feat.outputs.is_feat == 'true'
         run: |
           echo gh issue edit "$NUMBER" --add-label "$LABELS"
         env:
