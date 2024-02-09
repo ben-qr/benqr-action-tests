@@ -21,13 +21,19 @@ jobs:
 #        with:
 #           fetch-depth: 2
 
+      - uses: jitterbit/get-changed-files@v1
+        id: changed
+        with:
+          format: space-delimited
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Look for markdown files
         id: check_markdown
         if: startsWith( "${{ github.event.pull_request.title }}", "feat:" )
         run: |
-          echo "${{ steps.abc.outputs.added_modified }}"
-          echo ${{ steps.abc.outputs.added_modified }} | grep -E '\.md$'
-          if [[ ${{ steps.abc.outputs.added_modified }} | grep -E '\.md$') ]]; then
+          echo "${{ steps.changed.outputs.added_modified }}"
+          echo ${{ steps.changed.outputs.added_modified }} | grep -E '\.md$'
+          if [[ ${{ steps.changed.outputs.added_modified }} | grep -E '\.md$') ]]; then
             echo "docs_missing=true" >> $GITHUB_ENV
           fi
 
