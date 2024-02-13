@@ -42,7 +42,7 @@ jobs:
         if: startsWith( "${{ github.event.pull_request.title }}", "feat:" )
         run: |
           echo "${{ steps.changed.outputs.added_modified }}"
-          if ! ${{ steps.changed.outputs.added_modified }} | grep -E '(.md|.MD)'; then
+          if ! "${{ steps.changed.outputs.added_modified }}" | grep -E '(.md|.MD)'; then
             echo "docs_missing=true" >> $GITHUB_ENV
           fi
 
