@@ -46,10 +46,10 @@ jobs:
             echo "docs_missing=true" >> $GITHUB_ENV
           fi
       - name: check
-        run: echo "${{ steps.check_markdown.outputs.docs_missing }}"
+        run: echo "${{ env.docs_missing }}"
 
       - name: Add label if no documentation
-        if: steps.check_markdown.outputs.docs_missing == 'true'
+        if: env.docs_missing == 'true'
         run: |
           echo gh issue edit "$NUMBER" --add-label "$LABELS"
         env:
