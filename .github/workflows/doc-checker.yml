@@ -45,6 +45,8 @@ jobs:
           if ! echo "${{ steps.changed.outputs.added_modified }}" | grep -E '(.md|.MD)'; then
             echo "docs_missing=true" >> $GITHUB_ENV
           fi
+      - name: check
+        run: echo "${{ steps.check_markdown.outputs.docs_missing }}"
 
       - name: Add label if no documentation
         if: steps.check_markdown.outputs.docs_missing == 'true'
