@@ -12,3 +12,14 @@ on:
         description: "Target Tag (e.g. rel)"
         required: true
         type: string
+
+jobs:
+  whatever:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: test
+        run: echo "hello"
