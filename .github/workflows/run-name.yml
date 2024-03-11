@@ -1,5 +1,5 @@
 name: Deploy Docker Images
-run-name: Deploy Docker `${{ inputs.source }}` Images to `${{ inputs.target }}`
+run-name: Deploy Docker Images for ${{ inputs.source }} to ${{ inputs.target }}
 
 on:
   workflow_dispatch:
