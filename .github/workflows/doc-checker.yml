@@ -57,3 +57,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           LABELS: ":rotating_light: **This PR is missing documentation**"
+      - name: Add label if no documentation
+        uses: actions/labeler@v5
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

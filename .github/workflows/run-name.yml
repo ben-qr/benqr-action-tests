@@ -1,0 +1,14 @@
+name: Deploy Docker Images
+run-name: Deploy Docker ${{ inputs.source }} Images to %{{ inputs.target }}
+
+on:
+  workflow_call:
+    inputs:
+      source:
+        description: "Source Tag (e.g. 1.0.9)"
+        required: true
+        type: string
+      target:
+        description: "Target Tag (e.g. rel)"
+        required: true
+        type: string
