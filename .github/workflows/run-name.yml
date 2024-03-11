@@ -2,7 +2,7 @@ name: Deploy Docker Images
 run-name: Deploy Docker ${{ inputs.source }} Images to %{{ inputs.target }}
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       source:
         description: "Source Tag (e.g. 1.0.9)"
