@@ -2,6 +2,11 @@ name: Git Checks
 
 on:
   workflow_call:
+  pull_request:
+  push:
+    branches:
+      - main
+
 
 jobs:
   block-fixup:
