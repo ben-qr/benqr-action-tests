@@ -28,17 +28,18 @@ jobs:
         run: |
             for commit in ${{ github.event.commits }}; do
               echo "${{ commit.message }}"
-            title=$(cat <<'EOF'
-            ${{ commit.message }}
-            EOF
-            )
-            # Regular expression we'll use to analyze the string
-            regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
-            # Perform regex check and determine if title is correct
-            if [[ $title =~ $regex ]]
-            then
-                echo "Commit ${{ commit.message }} OK"
-            else
-                echo "Failing Check Test for commit ${{ commit.message }}"
-                exit 1
+              title=$(cat <<'EOF'
+              ${{ commit.message }}
+              EOF
+              )
+              # Regular expression we'll use to analyze the string
+              regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
+              # Perform regex check and determine if title is correct
+              if [[ $title =~ $regex ]]
+              then
+                  echo "Commit ${{ commit.message }} OK"
+              else
+                  echo "Failing Check Test for commit ${{ commit.message }}"
+                  exit 1
+              fi
             fi
