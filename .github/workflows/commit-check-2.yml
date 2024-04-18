@@ -15,7 +15,7 @@ jobs:
       id: regex
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
-        for commit in ${{ steps.get-pr-commits.outputs.commits }}; do
+        for commit in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
           echo "$commit"
 #          title=$(cat <<'EOF'
 #          ${{ commit.message }}
