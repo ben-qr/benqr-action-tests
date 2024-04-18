@@ -14,10 +14,7 @@ jobs:
     - name: Verify PR title with regex
       id: regex
       run: |
-        commits=$(cat <<'EOF'
-        ${{ steps.get-pr-commits.outputs.commits }}
-        EOF
-        )
+        commits="${{ steps.get-pr-commits.outputs.commits }}"
         regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
         for string in "$(echo $commits | grep -Po '\"message\": \"[^\"]*\",')"; do
           echo "string: $string"
