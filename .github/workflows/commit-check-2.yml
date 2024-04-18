@@ -16,5 +16,5 @@ jobs:
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
         for variable in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
-          echo "commit: ${{variable}}"
+          echo "commit: $variable"
         done
