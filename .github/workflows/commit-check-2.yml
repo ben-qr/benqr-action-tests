@@ -15,8 +15,9 @@ jobs:
       id: regex
       run: |
 #        echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
-        commits=fromJson("${{ steps.get-pr-commits.outputs.commits }}")
-        echo "Commits: $commits"
+#        commits=fromJson("${{ steps.get-pr-commits.outputs.commits }}")
+#        echo "Commits: $commits"
+        echo ${{ steps.get-pr-commits.outputs.commits }}.0
         echo "==="
         for variable in $commits; do
           echo "commit :)"
