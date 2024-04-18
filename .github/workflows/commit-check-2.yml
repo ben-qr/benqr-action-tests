@@ -15,7 +15,7 @@ jobs:
       id: regex
       run: |
         for variable in ${{ steps.get-pr-commits.outputs.commits }}; do
-          echo "commit: $variable"
+          echo "yes"
         done
 #          echo "commit: ${{$variable.message}}"
 ##          echo "$variable.message"
