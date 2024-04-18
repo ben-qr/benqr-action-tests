@@ -15,8 +15,8 @@ jobs:
       id: regex
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
-        for variable in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
-          echo $variable >> $GITHUB_ENV
+        for c in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
+          echo ${{c.message}}
         done
 #        for commit in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
 #          echo "$commit"
