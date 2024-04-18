@@ -15,11 +15,11 @@ jobs:
       id: regex
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
-        for x in ${{ steps.get-pr-commits.outputs.commits }}; do
-          echo "${{ x }}"
-          title=$(cat <<'EOF'
-          ${{ x.message }}
-          EOF
-          )
-        echo "title: $title"
+        for commit in ${{ steps.get-pr-commits.outputs.commits }}; do
+          echo "$commit"
+#          title=$(cat <<'EOF'
+#          ${{ commit.message }}
+#          EOF
+#          )
+#        echo "title: $title"
         done
