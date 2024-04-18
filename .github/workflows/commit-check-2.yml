@@ -16,6 +16,17 @@ jobs:
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
         for variable in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
-          echo $variable.message
+          echo "commit: $variable"
+          echo "${{ fromJSON($variable)[message] }}"
+#          regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
+#            # Perform regex check and determine if title is correct
+#            if [[ $title =~ $regex ]]
+#            then
+#                echo "Title OK"
+#                exit 0
+#            else
+#                echo "Failing Title Check Test"
+#                exit 1
+#            fi
 
         done
