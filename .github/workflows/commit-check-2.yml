@@ -15,14 +15,6 @@ jobs:
       id: regex
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
-        for c in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
-          echo ${{c.message}}
+        for variable in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
+          echo "${{variable.message}}"
         done
-#        for commit in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
-#          echo "$commit"
-#          title=$(cat <<'EOF'
-#          ${{ commit.message }}
-#          EOF
-#          )
-#        echo "title: $title"
-#        done
