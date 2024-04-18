@@ -19,7 +19,7 @@ jobs:
         EOF
         )
         regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
-        for string in '$(echo $result | grep -Po '\"message\": \"[^\"]*\",')'; do
+        for string in '$(echo $commits | grep -Po '\"message\": \"[^\"]*\",')'; do
           echo "string: $string"
         done
         
