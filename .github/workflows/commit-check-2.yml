@@ -16,7 +16,7 @@ jobs:
       run: |
         echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
         for variable in fromJson("${{ steps.get-pr-commits.outputs.commits }}"); do
-          echo "commit"
+          echo "commit:::"
           echo $variable
         done
 #          echo "commit: ${{$variable.message}}"
