@@ -14,7 +14,7 @@ jobs:
     - name: Verify PR title with regex
       id: regex
       run: |
-        for variable in $(echo -e "${{ steps.get-pr-commits.outputs.commits }}"); do
+        for variable in $(echo -e '${{ steps.get-pr-commits.outputs.commits }}'); do
             echo "varrrr"
           done
       shell: bash
