@@ -15,10 +15,16 @@ jobs:
       id: regex
       run: |
         commits="${{ steps.get-pr-commits.outputs.commits }}"
-        regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
-        for string in "$(echo $commits | grep -Po '\"message\": \"[^\"]*\",')"; do
-          echo "string: $string"
-        done
+        OUTPUT=($(echo $commits | tr -d '[],'))
+        
+        echo ${OUTPUT[0]}
+        echo ${OUTPUT[1]}
+        echo ${OUTPUT[2]}
+        echo ${OUTPUT[@]}
+#        regex='^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
+#        for string in "$(echo $commits | grep -Po '\"message\": \"[^\"]*\",')"; do
+#          echo "string: $string"
+#        done
         
 
       shell: bash
