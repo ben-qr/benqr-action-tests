@@ -17,6 +17,7 @@ jobs:
 #        echo "Commits: ${{ steps.get-pr-commits.outputs.commits }}"
 #        commits=fromJson("${{ steps.get-pr-commits.outputs.commits }}")
 #        echo "Commits: $commits"
+        echo "begin"
         for variable in $commits; do
           echo "commit :)"
           echo $variable
