@@ -5,8 +5,8 @@ jobs:
   commit-check:
     runs-on: ubuntu-latest
 
-    runs:
-      using: 'docker'
-      image: '../Dockerfile'
-      args:
-        - '^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
+    steps:
+      - name: Check PR Commits
+        uses: ./.github/commit-check.yml
+        with:
+          regexPattern: '^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
