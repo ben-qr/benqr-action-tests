@@ -1,14 +1,13 @@
-name: 'Regex Check Commits'
-description: 'Block the merge of Pull Requests that contain commits that do not match a given regex pattern.'
-author: 'Ben Gregory'
+name: Commit check
+on: [pull_request]
 
-inputs:
-  regexPattern:
-    description: 'The regular expression pattern to match fixup commits.'
-    required: true
-    type: string
-runs:
-  using: 'docker'
-  image: '../Dockerfile'
-  args:
-    - '^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
+jobs:
+  commit-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      runs:
+        using: 'docker'
+        image: '../Dockerfile'
+        args:
+          - '^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
