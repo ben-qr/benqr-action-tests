@@ -1,0 +1,13 @@
+name: Commit check
+on: [pull_request]
+
+jobs:
+  commit-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check PR Commits
+        uses: ben-qr/commit-title-checker@main
+        with:
+          regexPattern: '^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
