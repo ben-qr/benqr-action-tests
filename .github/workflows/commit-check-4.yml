@@ -7,6 +7,6 @@ jobs:
 
     steps:
       - name: Check PR Commits
-        uses: ./.github/commit-check.yml
+        uses: ./.github/commit-checker
         with:
           regexPattern: '^(docs|fix|feat|build|ci|chore|perf|refactor|revert|style|test)(\([_0-9a-zA-Z-]+\))?: .+$'
